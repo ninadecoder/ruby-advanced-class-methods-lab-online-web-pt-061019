@@ -38,16 +38,16 @@ class Song
     end
   end 
   
- def self.find_or_create_by_name(find_this_song)
-    did_i_find_it = self.all.detect {|x| x.name == find_this_song}
-    if did_i_find_it == nil
-      s = self.new 
-      s.name = find_this_song
-      s.save 
-      s
+   def self.new_from_filename(filename)
+    result_array = filename.scan(/(.*) - (.*).mp3/)
+    if result_array
+      song = self.new
+      song.artist_name = result_array[0][0]
+      song.name = result_array[0][1]
+      return song
     else
-      did_i_find_it
+      return nil
     end
-  end 
+  end
   
 end
