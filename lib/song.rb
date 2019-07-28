@@ -44,7 +44,13 @@ class Song
     @@all.sort {|i,j| i.name <=> j.name}
   end
   
-   def self.new_from_filename(filename)
+  def self.create_from_filename(filename)
+    song = self.new_from_filename(filename)
+    song.save if song
+    song
+  end
+  
+  def self.new_from_filename(filename)
     result_array = filename.scan(/(.*) - (.*).mp3/)
     if result_array
       song = self.new
