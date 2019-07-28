@@ -31,12 +31,8 @@ class Song
   end
   
   def self.find_by_name(name)
-    @@all.each do |song|
-      if song.name == name
-        return song
-      end 
-    end
-  end 
+    return @@all.detect {|song| song.name==name }
+  end
   
    def self.new_from_filename(filename)
     result_array = filename.scan(/(.*) - (.*).mp3/)
