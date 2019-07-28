@@ -35,13 +35,13 @@ class Song
   end
   
   def self.find_or_create_by_name(name)
-    result = self.find_by_name(name)
-    return result if result
+    song = self.find_by_name(name)
+    return song if song
     return self.create_by_name(name)
   end
   
   def self.alphabetical
-    @@all.sort {|i,j| i.name <=> j.name}
+    @@all.sort {|x,y| x.name <=> y.name}
   end
   
   def self.new_from_filename(filename)
