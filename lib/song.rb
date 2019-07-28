@@ -34,6 +34,12 @@ class Song
     return @@all.detect {|song| song.name==name }
   end
   
+  def self.find_or_create_by_name(name)
+    result = self.find_by_name(name)
+    return result if result
+    return self.create_by_name(name)
+  end
+  
    def self.new_from_filename(filename)
     result_array = filename.scan(/(.*) - (.*).mp3/)
     if result_array
